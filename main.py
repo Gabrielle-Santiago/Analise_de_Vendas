@@ -32,4 +32,4 @@ lojaTotal = totalTabela.groupby('Loja').sum()[['Faturamento']]
 lojaTotal = lojaTotal.reset_index()
 grafico = px.bar(lojaTotal, x = 'Loja' , y = 'Faturamento', title = 'Faturamento por loja')
 grafico.show()
-grafico.write_html('grafico.html')
+grafico.write_html('\html\grafico.html')
