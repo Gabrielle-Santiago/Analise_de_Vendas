@@ -19,6 +19,12 @@ for arquivo in listaArquivos:
 tabelaProdutos = totalTabela.groupby('Produto').sum()[['Quantidade Vendida']]
 tabelaProdutos = tabelaProdutos.sort_values(by = 'Quantidade Vendida', ascending = False)
 
+# Informações dos produtos
+infoProdutos = totalTabela[["Produto", "Quantidade Vendida", "Preco Unitario"]]
+infoProdutos = infoProdutos.merge(tabelaProdutos, on='Produto', suffixes=('_total', '_produto'))
+
+print(infoProdutos)
+
 # Visualização do produto que mais faturou
 totalTabela['Faturamento'] = totalTabela['Quantidade Vendida'] * totalTabela['Preco Unitario']
 fatTotal = totalTabela.groupby('Produto').sum()
@@ -29,7 +35,7 @@ totalTabela['Loja'] = totalTabela['Loja']
 lojaTotal = totalTabela.groupby('Loja').sum()[['Faturamento']]
 
 # Dashboard
-lojaTotal = lojaTotal.reset_index()
+"""lojaTotal = lojaTotal.reset_index()
 grafico = px.bar(lojaTotal, x = 'Loja' , y = 'Faturamento', title = 'Faturamento por loja')
 grafico.show()
-grafico.write_html('\html\grafico.html')
+grafico.write_html('\html\grafico.html')"""
