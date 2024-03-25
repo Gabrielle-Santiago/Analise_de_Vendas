@@ -4,10 +4,13 @@ import pandas as pd
 
 app = Flask(__name__)
 
-df = app.template_folder = path.abspath('html/index.html')
-
-def index():
-    return render_template('index.html', table = df.to.html(index = False))
-
 if __name__ == '__main__':
     app.run(debug = True)
+
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+@app.route('/test')
+def test():
+    return render_template('test.html')
